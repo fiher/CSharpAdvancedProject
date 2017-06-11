@@ -20,10 +20,8 @@ namespace EncriptionClass
             List<string>    textBlocks = new List<string>();
             string          leftBlockOfText = "";
             int             startIndex = 0;
-          
-            char[]          letters = text.ToCharArray();
-            Array.Reverse(letters);
-            text = string.Join("", letters);
+
+            text = ReverseText(text);
             for (int i = 0; i < splitInto; i++)
             {
                 string textBlock = "";
@@ -81,6 +79,45 @@ namespace EncriptionClass
                 else if (textLength >= 550) { splitInto = 40; }
                 return splitInto;
             }
+        }
+        public string cipher1(string text)
+        {
+            CypherText();
+            void CypherText()
+            {
+                for (int k = 0; k < text.Length; k++)
+                {
+                    string myNewText = "";
+                    if (k > 0)
+                    {
+                        for (int y = 0; y < k; y++)
+                        {
+                            myNewText += text[y];
+                        }
+
+                    }
+                    myNewText += text[k];
+                    int myLetterASCII = (int)text[k];
+                    for (int i = k + 1; i < text.Length; i++)
+                    {
+                        int currentLetterASCII = (int)text[i];
+                        int newASCII = myLetterASCII + currentLetterASCII;
+                        myNewText += (char)newASCII;
+                    }
+                    text = myNewText;
+                }
+            }
+            
+            text = ReverseText(text);
+            CypherText();
+            return text;
+        }
+        public string ReverseText(string text)
+        {
+            char[] letters = text.ToCharArray();
+            Array.Reverse(letters);
+            text = string.Join("", letters);
+            return text;
         }
     }
 }

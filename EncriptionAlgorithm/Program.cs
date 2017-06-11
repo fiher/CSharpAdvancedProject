@@ -16,7 +16,8 @@ namespace EncriptionAlgorithm
         {
             string text = Console.ReadLine();
             var encription = new Encription();
-             text = encription.cipher0(text);
+            Console.WriteLine((char)20030);
+             text = encription.cipher1(text);
             Console.WriteLine(text);
         }
     }

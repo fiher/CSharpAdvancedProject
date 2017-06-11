@@ -4,3 +4,9 @@ C:\Users\PC\Documents\Visual Studio 2017\Projects\CSHARP_Advanced\EncriptionAlgo
 C:\Users\PC\Documents\Visual Studio 2017\Projects\CSHARP_Advanced\EncriptionAlgorithm\obj\Debug\EncriptionAlgorithm.csprojResolveAssemblyReference.cache
 C:\Users\PC\Documents\Visual Studio 2017\Projects\CSHARP_Advanced\EncriptionAlgorithm\obj\Debug\EncriptionAlgorithm.exe
 C:\Users\PC\Documents\Visual Studio 2017\Projects\CSHARP_Advanced\EncriptionAlgorithm\obj\Debug\EncriptionAlgorithm.pdb
+C:\Users\PC\Documents\GitHub\CSharpAdvancedProject\EncriptionAlgorithm\bin\Debug\EncriptionAlgorithm.exe.config
+C:\Users\PC\Documents\GitHub\CSharpAdvancedProject\EncriptionAlgorithm\bin\Debug\EncriptionAlgorithm.exe
+C:\Users\PC\Documents\GitHub\CSharpAdvancedProject\EncriptionAlgorithm\bin\Debug\EncriptionAlgorithm.pdb
+C:\Users\PC\Documents\GitHub\CSharpAdvancedProject\EncriptionAlgorithm\obj\Debug\EncriptionAlgorithm.csprojResolveAssemblyReference.cache
+C:\Users\PC\Documents\GitHub\CSharpAdvancedProject\EncriptionAlgorithm\obj\Debug\EncriptionAlgorithm.exe
+C:\Users\PC\Documents\GitHub\CSharpAdvancedProject\EncriptionAlgorithm\obj\Debug\EncriptionAlgorithm.pdb
