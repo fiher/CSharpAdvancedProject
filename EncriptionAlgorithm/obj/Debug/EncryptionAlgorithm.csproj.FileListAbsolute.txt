@@ -1,0 +1,6 @@
+C:\Users\PC\Documents\GitHub\CSharpAdvancedProject\EncriptionAlgorithm\bin\Debug\EncriptionAlgorithm.exe.config
+C:\Users\PC\Documents\GitHub\CSharpAdvancedProject\EncriptionAlgorithm\bin\Debug\EncriptionAlgorithm.exe
+C:\Users\PC\Documents\GitHub\CSharpAdvancedProject\EncriptionAlgorithm\bin\Debug\EncriptionAlgorithm.pdb
+C:\Users\PC\Documents\GitHub\CSharpAdvancedProject\EncriptionAlgorithm\obj\Debug\EncryptionAlgorithm.csprojResolveAssemblyReference.cache
+C:\Users\PC\Documents\GitHub\CSharpAdvancedProject\EncriptionAlgorithm\obj\Debug\EncriptionAlgorithm.exe
+C:\Users\PC\Documents\GitHub\CSharpAdvancedProject\EncriptionAlgorithm\obj\Debug\EncriptionAlgorithm.pdb

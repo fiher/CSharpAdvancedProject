@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using EncriptionClass;
+using EncryptionClass;
 
 
 
@@ -15,10 +15,12 @@ namespace EncriptionAlgorithm
         static void Main(string[] args)
         {
             string text = Console.ReadLine();
-            var encription = new Encription();
-            Console.WriteLine((char)20030);
-             text = encription.cipher1(text);
+            var encryption = new Encryption();
+            var decryption = new Decryption();
+            text = encryption.cipher0(text);
             Console.WriteLine(text);
+            text = decryption.decypher0(text);
+            Console.WriteLine("original text was -> "+text);
         }
     }
 }

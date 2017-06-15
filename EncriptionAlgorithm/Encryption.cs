@@ -4,22 +4,22 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace EncriptionClass
+namespace EncryptionClass
 {
-    public class Encription
+    public class Encryption
     {
-        public Encription()
+        public Encryption()
         {
         }
         public string cipher0(string text)
         {
-            int             textLength = text.Length;
-            int             splitInto = 0;
+            int textLength = text.Length;
+            int splitInto = 0;
             List<string> textAsList = new List<string>();
             SplitInto();
-            List<string>    textBlocks = new List<string>();
-            string          leftBlockOfText = "";
-            int             startIndex = 0;
+            List<string> textBlocks = new List<string>();
+            string leftBlockOfText = "";
+            int startIndex = 0;
 
             text = ReverseText(text);
             for (int i = 0; i < splitInto; i++)
@@ -32,6 +32,7 @@ namespace EncriptionClass
                 }
                 textBlocks.Add(textBlock);
             }
+            
             textBlocks.Reverse();
             foreach (var textBlock in textBlocks)
             {
@@ -46,7 +47,7 @@ namespace EncriptionClass
                 textAsList.Add(leftBlockOfText);
             }
             return string.Join("", textAsList);
-            int SplitInto()
+            void SplitInto()
             {
                 if (textLength >= 5 && textLength < 10) { splitInto = 2; }
                 else if (textLength < 15) { splitInto = 4; }
@@ -77,7 +78,6 @@ namespace EncriptionClass
                 else if (textLength < 500) { splitInto = 5; }
                 else if (textLength < 550) { splitInto = 23; }
                 else if (textLength >= 550) { splitInto = 40; }
-                return splitInto;
             }
         }
         public string cipher1(string text)
