@@ -115,6 +115,27 @@ namespace EncryptionClass
         {
             return text;
         }
+        public string cypher3(string text)
+        {
+            return text;
+        }
+        public string cypher4(string text)
+        {
+            return text;
+        }
+        public string cypher5(string text)
+        {
+            StringBuilder muttableText = new StringBuilder(text);
+            int textLength = text.Length;
+            for (int i = 0; i < textLength; i++)
+            {
+                int asciiChange = i + 1;
+                int letterASCII = (int)text[i];
+                letterASCII += asciiChange;
+                muttableText[i] = (char)letterASCII;
+            }
+            return muttableText.ToString();
+        }
         public string ReverseText(string text)
         {
             char[] letters = text.ToCharArray();

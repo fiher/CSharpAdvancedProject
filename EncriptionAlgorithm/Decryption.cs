@@ -28,15 +28,15 @@ namespace EncryptionClass
                 textBlocks.Add(textBlock);
             }
             textBlocks.Reverse();
-            foreach(var textBlock in textBlocks)
+            foreach (var textBlock in textBlocks)
             {
                 textAsList.Add(textBlock);
             }
-            if (startIndex <textLength){
-                for (int i = startIndex;i <textLength;i++){
-            leftBlockOfText += text[i];
+            if (startIndex < textLength) {
+                for (int i = startIndex; i < textLength; i++) {
+                    leftBlockOfText += text[i];
                 }
-            textAsList.Add(leftBlockOfText);
+                textAsList.Add(leftBlockOfText);
             }
             text = string.Join("", textAsList);
             text = ReverseText(text);
@@ -82,24 +82,49 @@ namespace EncryptionClass
             DecypherText();
             void DecypherText()
             {
-                for (int k = text.Length-1; k > 0; k--)
+                for (int k = text.Length - 1; k > 0; k--)
                 {
                     string myNewText = "";
-                        for (int y = 0; y < k; y++)
-                        {
-                            myNewText += text[y];
-                        }
-                    int myLetterASCII = (int)text[k-1];
-                    for (int i = k ; i < text.Length; i++)
+                    for (int y = 0; y < k; y++)
+                    {
+                        myNewText += text[y];
+                    }
+                    int myLetterASCII = (int)text[k - 1];
+                    for (int i = k; i < text.Length; i++)
                     {
                         int currentLetterASCII = (int)text[i];
-                        int newASCII =currentLetterASCII - myLetterASCII;
+                        int newASCII = currentLetterASCII - myLetterASCII;
                         myNewText += (char)newASCII;
                     }
                     text = myNewText;
                 }
             }
             return text;
+        }
+        public string decypher2(string text)
+        {
+            return text;
+        }
+        public string decypher3(string text)
+        {
+            return text;
+        }
+        public string decypher4(string text)
+        {
+            return text;
+        }
+        public string decypher5(string text)
+        {
+            StringBuilder muttableText = new StringBuilder(text);
+            int textLength = text.Length;
+            for (int i = 0; i < textLength; i++)
+            {
+                int asciiChange = i + 1;
+                int letterASCII = (int)text[i];
+                letterASCII -= asciiChange;
+                muttableText[i] = (char)letterASCII;
+            }
+            return muttableText.ToString();
         }
         public string ReverseText(string text)
         {
