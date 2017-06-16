@@ -75,6 +75,32 @@ namespace EncryptionClass
                 else if (textLength >= 550) { splitInto = 40; }
             }
         }
+        public string decypher1(string text)
+        {
+            DecypherText();
+            text = ReverseText(text);
+            DecypherText();
+            void DecypherText()
+            {
+                for (int k = text.Length-1; k > 0; k--)
+                {
+                    string myNewText = "";
+                        for (int y = 0; y < k; y++)
+                        {
+                            myNewText += text[y];
+                        }
+                    int myLetterASCII = (int)text[k-1];
+                    for (int i = k ; i < text.Length; i++)
+                    {
+                        int currentLetterASCII = (int)text[i];
+                        int newASCII =currentLetterASCII - myLetterASCII;
+                        myNewText += (char)newASCII;
+                    }
+                    text = myNewText;
+                }
+            }
+            return text;
+        }
         public string ReverseText(string text)
         {
             char[] letters = text.ToCharArray();

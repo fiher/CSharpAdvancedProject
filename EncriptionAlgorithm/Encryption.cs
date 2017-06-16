@@ -11,7 +11,7 @@ namespace EncryptionClass
         public Encryption()
         {
         }
-        public string cipher0(string text)
+        public string cypher0(string text)
         {
             int textLength = text.Length;
             int splitInto = 0;
@@ -80,9 +80,12 @@ namespace EncryptionClass
                 else if (textLength >= 550) { splitInto = 40; }
             }
         }
-        public string cipher1(string text)
+        public string cypher1(string text)
         {
             CypherText();
+            text = ReverseText(text);
+            CypherText();
+            return text;
             void CypherText()
             {
                 for (int k = 0; k < text.Length; k++)
@@ -107,9 +110,9 @@ namespace EncryptionClass
                     text = myNewText;
                 }
             }
-            
-            text = ReverseText(text);
-            CypherText();
+        }
+        public string cypher2(string text)
+        {
             return text;
         }
         public string ReverseText(string text)
