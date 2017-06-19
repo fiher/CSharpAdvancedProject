@@ -111,8 +111,26 @@ namespace EncryptionClass
                 }
             }
         }
-        public string cypher2(string text)
+        public string cypher2(string text, string publicKey, string privateKey, string secretKey)
         {
+            int textLegnth = text.Length;
+            int insertIndex = (int) Math.Floor(textLegnth / 3.0);
+            text = ReverseText(text);
+            List<char> textAsList = text.ToList();
+            for (int i = 0; i < publicKey.Length; i++)
+            {
+                textAsList.Insert(insertIndex + i, publicKey[i]);
+            }
+            for (int i = 0; i < privateKey.Length; i++)
+            {
+                textAsList.Insert(insertIndex + i, privateKey[i]);
+            }
+            for (int i = 0; i < secretKey.Length; i++)
+            {
+                textAsList.Insert(insertIndex + i, secretKey[i]);
+            }
+            text = string.Join("", textAsList);
+            text = ReverseText(text);
             return text;
         }
         public string cypher3(string text)
