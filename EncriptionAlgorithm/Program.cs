@@ -17,8 +17,10 @@ namespace EncriptionAlgorithm
             string text = Console.ReadLine();
             var encryption = new Encryption();
             var decryption = new Decryption();
-            text = encryption.cypher2(text,"pesho","gosho","misho");
+            text = encryption.cypher2(text,"bbb","gggg","ccccc");
             Console.WriteLine(text);
+            text = decryption.decypher2(text, "bbb", "gggg", "ccccc");
+            Console.WriteLine($"original text was {text}");
         }
     }
 }

@@ -117,17 +117,22 @@ namespace EncryptionClass
             int insertIndex = (int) Math.Floor(textLegnth / 3.0);
             text = ReverseText(text);
             List<char> textAsList = text.ToList();
-            for (int i = 0; i < publicKey.Length; i++)
+            int publicKeyLength = publicKey.Length;
+            int privateKeyLength = privateKey.Length;
+            int secretKeyLength = secretKey.Length;
+            for (int i = 0; i < publicKeyLength; i++)
             {
-                textAsList.Insert(insertIndex + i, publicKey[i]);
+                textAsList.Insert(insertIndex, publicKey[i]);
             }
-            for (int i = 0; i < privateKey.Length; i++)
+            insertIndex++;
+            for (int i = 0; i < privateKeyLength; i++)
             {
-                textAsList.Insert(insertIndex + i, privateKey[i]);
+                textAsList.Insert(insertIndex+ publicKeyLength, privateKey[i]);
             }
-            for (int i = 0; i < secretKey.Length; i++)
+            insertIndex++;
+            for (int i = 0; i < secretKeyLength; i++)
             {
-                textAsList.Insert(insertIndex + i, secretKey[i]);
+                textAsList.Insert(insertIndex + publicKeyLength + privateKeyLength, secretKey[i]);
             }
             text = string.Join("", textAsList);
             text = ReverseText(text);

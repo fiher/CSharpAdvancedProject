@@ -101,8 +101,33 @@ namespace EncryptionClass
             }
             return text;
         }
-        public string decypher2(string text)
+        public string decypher2(string text,string publicKey, string privateKey, string secretKey)
         {
+             int textLength = text.Length;
+                 text = ReverseText(text);
+             List<char> textAsList = text.ToList();
+             int publicKeyLength = publicKey.Length;
+             int privateKeyLength = privateKey.Length;
+             int secretKeyLength = secretKey.Length;
+             int actualTextLength = textLength - publicKeyLength - privateKeyLength - secretKeyLength;
+             int insertIndex = (int)Math.Floor(actualTextLength / 3.0);
+           
+            for (int i = 0; i < publicKeyLength; i++)
+            {
+                textAsList.RemoveAt(insertIndex);
+            }
+            insertIndex++;
+            for (int i = 0; i < privateKeyLength; i++)
+            {
+                textAsList.RemoveAt(insertIndex);
+            }
+            insertIndex++;
+            for (int i = 0; i < secretKeyLength; i++)
+            {
+                textAsList.RemoveAt(insertIndex);
+            }
+            text = string.Join("", textAsList);
+            text = ReverseText(text);
             return text;
         }
         public string decypher3(string text)
