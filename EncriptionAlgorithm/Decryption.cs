@@ -32,8 +32,10 @@ namespace EncryptionClass
             {
                 textAsList.Add(textBlock);
             }
-            if (startIndex < textLength) {
-                for (int i = startIndex; i < textLength; i++) {
+            if (startIndex < textLength)
+            {
+                for (int i = startIndex; i < textLength; i++)
+                {
                     leftBlockOfText += text[i];
                 }
                 textAsList.Add(leftBlockOfText);
@@ -101,17 +103,17 @@ namespace EncryptionClass
             }
             return text;
         }
-        public string decypher2(string text,string publicKey, string privateKey, string secretKey)
+        public string decypher2(string text, string publicKey, string privateKey, string secretKey)
         {
-             int textLength = text.Length;
-                 text = ReverseText(text);
-             List<char> textAsList = text.ToList();
-             int publicKeyLength = publicKey.Length;
-             int privateKeyLength = privateKey.Length;
-             int secretKeyLength = secretKey.Length;
-             int actualTextLength = textLength - publicKeyLength - privateKeyLength - secretKeyLength;
-             int insertIndex = (int)Math.Floor(actualTextLength / 3.0);
-           
+            int textLength = text.Length;
+            text = ReverseText(text);
+            List<char> textAsList = text.ToList();
+            int publicKeyLength = publicKey.Length;
+            int privateKeyLength = privateKey.Length;
+            int secretKeyLength = secretKey.Length;
+            int actualTextLength = textLength - publicKeyLength - privateKeyLength - secretKeyLength;
+            int insertIndex = (int)Math.Floor(actualTextLength / 3.0);
+
             for (int i = 0; i < publicKeyLength; i++)
             {
                 textAsList.RemoveAt(insertIndex);
@@ -136,7 +138,20 @@ namespace EncryptionClass
         }
         public string decypher4(string text)
         {
-            return text;
+            StringBuilder muttableText = new StringBuilder(text);
+            int textLength = text.Length;
+            for (int i = 0; i < textLength; i++)
+            {
+                int asciiChange = i + 1;
+                if (asciiChange > 27)
+                {
+                    asciiChange = asciiChange % 27;
+                }
+                int letterASCII = (int)text[i];
+                letterASCII -= asciiChange;
+                muttableText[i] = (char)letterASCII;
+            }
+            return muttableText.ToString();
         }
         public string decypher5(string text)
         {
