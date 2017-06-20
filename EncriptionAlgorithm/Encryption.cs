@@ -144,7 +144,20 @@ namespace EncryptionClass
         }
         public string cypher4(string text)
         {
-            return text;
+            StringBuilder muttableText = new StringBuilder(text);
+            int textLength = text.Length;
+            for (int i = 0; i < textLength; i++)
+            {
+                int asciiChange = i + 1;
+                if(asciiChange > 27)
+                {
+                    asciiChange = asciiChange % 27;
+                }
+                int letterASCII = (int)text[i];
+                letterASCII += asciiChange;
+                muttableText[i] = (char)letterASCII;
+            }
+            return muttableText.ToString();
         }
         public string cypher5(string text)
         {
