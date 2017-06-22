@@ -8,10 +8,45 @@ namespace EncryptionClass
 {
     public class Encryption
     {
-        public Encryption()
+        private string sequence = "013452014131514143141541001031034012301034104011031045040104043210103013013405043040500341131141515405";
+        private string secretKey = "!@!NMIE@J(9u8jOJIEomdoni";
+        
+        public string encrypt(string text, string publicKey, string privateKey)
         {
+           
+            foreach (var cypherNumber in this.sequence)
+            {
+                string cypherName = $"cypher{cypherNumber}";
+
+                switch (cypherName)
+                {
+                    case "cypher0":
+                        text = this.cypher0(text);
+                        break;
+                    case "cypher1":
+                        text = this.cypher1(text);
+                        break;
+                    case "cypher2":
+                        text = this.cypher2(text, publicKey, privateKey, this.secretKey);
+                        break;
+                    case "cypher3":
+                        text = this.cypher3(text);
+                        break;
+                    case "cypher4":
+                        text = this.cypher4(text, publicKey, privateKey, this.secretKey);
+                        break;
+                    case "cypher5":
+                        text = this.cypher5(text);
+                        break;
+                    default:
+                        throw new Exception("No such cypher found");
+                }
+            }
+            
+            return text;
         }
-        public string cypher0(string text)
+
+        private string cypher0(string text)
         {
             int textLength = text.Length;
             int splitInto = 0;
@@ -80,7 +115,7 @@ namespace EncryptionClass
                 else if (textLength >= 550) { splitInto = 40; }
             }
         }
-        public string cypher1(string text)
+        private string cypher1(string text)
         {
             CypherText();
             text = ReverseText(text);
@@ -111,7 +146,7 @@ namespace EncryptionClass
                 }
             }
         }
-        public string cypher2(string text, string publicKey, string privateKey, string secretKey)
+        private string cypher2(string text, string publicKey, string privateKey, string secretKey)
         {
             int textLegnth = text.Length;
             int insertIndex = (int) Math.Floor(textLegnth / 3.0);
@@ -138,41 +173,65 @@ namespace EncryptionClass
             text = ReverseText(text);
             return text;
         }
-        public string cypher3(string text)
+        private string cypher3(string text)
         {
+
+            int  textLength = text.Length;
+            List<char> cypheredText = new List<char>();
+            bool isOdd = false;
+            double counter = textLength / 2;
+            if(textLength%2 != 0)
+            {
+                counter = Math.Floor(counter);
+                isOdd = true;
+            }
+
+            for (int i = 0; i < counter; i++) {
+                cypheredText.Add(text[textLength - 1 - i]);
+                cypheredText.Add(text[i]);
+            }
+            
+            if (isOdd){
+                cypheredText.Add(text[(int)counter]);
+            }
+            text = string.Join("", cypheredText);
             return text;
         }
-        public string cypher4(string text)
+        private string cypher4(string text, string publicKey, string privateKey,string secretKey)
+        {
+            StringBuilder muttableText = new StringBuilder(text);
+            int textLength = text.Length;
+            int publicKeyLength = publicKey.Length;
+            int publicKeyIndex = 0;
+            int privateKeyLength = privateKey.Length;
+            int privateKeyIndex = 0;
+            int secretKeyLength = secretKey.Length;
+            int secretKeyIndex = 0;
+            for (int i = 0; i < textLength; i++)
+            {
+                if(publicKeyIndex == publicKeyLength - 1) { publicKeyIndex = 0; }
+                if(privateKeyIndex == privateKeyLength - 1) { privateKeyIndex = 0; }
+                if(secretKeyIndex == secretKeyLength - 1) { secretKeyIndex = 0; }
+                int letterASCII = (int)(text[i]);
+                int newASCII = (int)(publicKey[publicKeyIndex]) + (int)(privateKey[privateKeyIndex]) + (int)(secretKey[secretKeyIndex]);
+                muttableText[i] = (char)(letterASCII + newASCII);
+            }
+            return muttableText.ToString();
+        }
+        private string cypher5(string text)
         {
             StringBuilder muttableText = new StringBuilder(text);
             int textLength = text.Length;
             for (int i = 0; i < textLength; i++)
             {
                 int asciiChange = i + 1;
-                if(asciiChange > 27)
-                {
-                    asciiChange = asciiChange % 27;
-                }
                 int letterASCII = (int)text[i];
                 letterASCII += asciiChange;
                 muttableText[i] = (char)letterASCII;
             }
             return muttableText.ToString();
         }
-        public string cypher5(string text)
-        {
-            StringBuilder muttableText = new StringBuilder(text);
-            int textLength = text.Length;
-            for (int i = 0; i < textLength; i++)
-            {
-                int asciiChange = i + 1;
-                int letterASCII = (int)text[i];
-                letterASCII += asciiChange;
-                muttableText[i] = (char)letterASCII;
-            }
-            return muttableText.ToString();
-        }
-        public string ReverseText(string text)
+        private string ReverseText(string text)
         {
             char[] letters = text.ToCharArray();
             Array.Reverse(letters);

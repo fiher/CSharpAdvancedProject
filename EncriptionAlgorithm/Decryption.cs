@@ -8,7 +8,48 @@ namespace EncryptionClass
 {
     class Decryption
     {
-        public string decypher0(string text)
+        private string sequence = "013452014131514143141541001031034012301034104011031045040104043210103013013405043040500341131141515405";
+        private string secretKey = "!@!NMIE@J(9u8jOJIEomdoni";
+        private Encryption encryption;
+        public  Decryption(Encryption encryption)
+        {
+            this.encryption = encryption;
+        }
+        public string decrypt(string text, string publicKey, string privateKey)
+        {
+            foreach (var decypherNumber in ReverseText(this.sequence))
+            {
+                string decypherName = $"decypher{decypherNumber}";
+
+                switch (decypherName)
+                {
+                    case "decypher0":
+                        text = this.decypher0(text);
+                        break;
+                    case "decypher1":
+                        text = this.decypher1(text);
+                        break;
+                    case "decypher2":
+                        text = this.decypher2(text, publicKey, privateKey, this.secretKey);
+                        break;
+                    case "decypher3":
+                        text = this.decypher3(text);
+                        break;
+                    case "decypher4":
+                        text = this.decypher4(text,publicKey,privateKey,this.secretKey);
+                        break;
+                    case "decypher5":
+                        text = this.decypher5(text);
+                        break;
+                    default:
+                        throw new Exception("No such decypher found");
+                }
+                
+            }
+            return text;
+        }
+
+        private string decypher0(string text)
         {
             int textLength = text.Length;
             int splitInto = 0;
@@ -77,7 +118,7 @@ namespace EncryptionClass
                 else if (textLength >= 550) { splitInto = 40; }
             }
         }
-        public string decypher1(string text)
+        private string decypher1(string text)
         {
             DecypherText();
             text = ReverseText(text);
@@ -103,7 +144,7 @@ namespace EncryptionClass
             }
             return text;
         }
-        public string decypher2(string text, string publicKey, string privateKey, string secretKey)
+        private string decypher2(string text, string publicKey, string privateKey, string secretKey)
         {
             int textLength = text.Length;
             text = ReverseText(text);
@@ -132,41 +173,80 @@ namespace EncryptionClass
             text = ReverseText(text);
             return text;
         }
-        public string decypher3(string text)
+        private string decypher3(string text)
         {
+            List<char> textAsList = text.ToList();
+    
+            string cypheredText = string.Join("",textAsList);
+            int textLength = cypheredText.Length;
+            bool isOdd = false;
+            double counter = textLength / 2;
+            if (textLength % 2 != 0)
+            {
+                counter = Math.Floor(counter);
+                isOdd = true;
+            }
+
+            char[] decypherText = new char[textLength];
+            decypherText[decypherText.Count() - 1] = cypheredText[0];
+            decypherText[0] = cypheredText[1];
+
+            int odd = 0;
+            int shift = 0;
+            if (isOdd){
+                decypherText[(int)counter] = cypheredText[textLength - 1];
+                odd = 1;
+            }else{
+                shift = 1;
+            }
+            int insertPosition = 1;
+
+            for (int i = 2; i <textLength - 1 -odd;i += 2){
+                int num = decypherText.Count() - 1 -odd -shift;
+                decypherText[insertPosition] = cypheredText[i + 1];
+                decypherText[decypherText.Count() - 1 -odd -shift] = cypheredText[i];
+                shift += 1;
+                insertPosition += 1;
+            }
+            text = string.Join("", decypherText);
             return text;
+
         }
-        public string decypher4(string text)
+        private string decypher4(string text,string publicKey, string privateKey, string secretKey)
+        {
+            StringBuilder muttableText = new StringBuilder(text);
+            int textLength = text.Length;
+            int publicKeyLength = publicKey.Length;
+            int publicKeyIndex = 0;
+            int privateKeyLength = privateKey.Length;
+            int privateKeyIndex = 0;
+            int secretKeyLength = secretKey.Length;
+            int secretKeyIndex = 0;
+            for (int i = 0; i < textLength; i++)
+            {
+                if (publicKeyIndex == publicKeyLength - 1) { publicKeyIndex = 0; }
+                if (privateKeyIndex == privateKeyLength - 1) { privateKeyIndex = 0; }
+                if (secretKeyIndex == secretKeyLength - 1) { secretKeyIndex = 0; }
+                int letterASCII = (int)text[i];
+                int newASCII = (int)(publicKey[publicKeyIndex]) + (int)(privateKey[privateKeyIndex]) + (int)(secretKey[secretKeyIndex]);
+                muttableText[i] = (char)(text[i] - newASCII);
+            }
+            return muttableText.ToString();
+        }
+        private string decypher5(string text)
         {
             StringBuilder muttableText = new StringBuilder(text);
             int textLength = text.Length;
             for (int i = 0; i < textLength; i++)
             {
                 int asciiChange = i + 1;
-                if (asciiChange > 27)
-                {
-                    asciiChange = asciiChange % 27;
-                }
                 int letterASCII = (int)text[i];
                 letterASCII -= asciiChange;
                 muttableText[i] = (char)letterASCII;
             }
             return muttableText.ToString();
         }
-        public string decypher5(string text)
-        {
-            StringBuilder muttableText = new StringBuilder(text);
-            int textLength = text.Length;
-            for (int i = 0; i < textLength; i++)
-            {
-                int asciiChange = i + 1;
-                int letterASCII = (int)text[i];
-                letterASCII -= asciiChange;
-                muttableText[i] = (char)letterASCII;
-            }
-            return muttableText.ToString();
-        }
-        public string ReverseText(string text)
+        private string ReverseText(string text)
         {
             char[] letters = text.ToCharArray();
             Array.Reverse(letters);
