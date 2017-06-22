@@ -22,7 +22,7 @@
 <h2>How to run it?<h2>
 </div>
 <div>
-<h4>After download you want to go to **EncryptionAlgorithm->Program.cs** and hit **CTRL + F5** . If you want to change the way the algorithm works you need to go to **EncryptionAlgorithm->Encryption.cs**. There you will find private variable "sequence" containing numbers from 0 to 5 represented as a long string. You can change it anyway you want as long as you follow these rules:
+<h4>After download you want to go to <b>EncryptionAlgorithm->Program.cs</b> and hit <b>CTRL + F5</b> . If you want to change the way the algorithm works you need to go to <b>EncryptionAlgorithm->Encryption.cs</b>. There you will find private variable <b>sequence</b> containing numbers from 0 to 5 represented as a long string. You can change it anyway you want as long as you follow these rules:
 <ul>
 <li>It must contain only numbers from 0 to 5 and nothing else!</li>
 <li>Don't use the number 2 more than twice as it is used to insert things into the text and make it bigger</li>
