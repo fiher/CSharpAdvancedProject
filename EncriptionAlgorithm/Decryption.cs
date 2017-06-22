@@ -8,8 +8,8 @@ namespace EncryptionClass
 {
     class Decryption
     {
-        private string sequence = "013452014131514143141541001031034012301034104011031045040104043210103013013405043040500341131141515405";
-        private string secretKey = "!@!NMIE@J(9u8jOJIEomdoni";
+        private string sequence = "012345010310401505050104001410400130104041005040411313141314143145";
+        private string secretKey = "!@!NMIE@J(9u8jOJIEo";
         private Encryption encryption;
         public  Decryption(Encryption encryption)
         {
@@ -17,6 +17,10 @@ namespace EncryptionClass
         }
         public string decrypt(string text, string publicKey, string privateKey)
         {
+            string secretKey = this.secretKey;
+            publicKey = this.encryption.Cypher(publicKey, secretKey, publicKey, privateKey);
+            privateKey = this.encryption.Cypher(privateKey, privateKey, publicKey, secretKey);
+            secretKey = this.encryption.Cypher(secretKey, publicKey, privateKey, secretKey);
             foreach (var decypherNumber in ReverseText(this.sequence))
             {
                 string decypherName = $"decypher{decypherNumber}";
@@ -30,13 +34,13 @@ namespace EncryptionClass
                         text = this.decypher1(text);
                         break;
                     case "decypher2":
-                        text = this.decypher2(text, publicKey, privateKey, this.secretKey);
+                        text = this.decypher2(text, publicKey, privateKey, secretKey);
                         break;
                     case "decypher3":
                         text = this.decypher3(text);
                         break;
                     case "decypher4":
-                        text = this.decypher4(text,publicKey,privateKey,this.secretKey);
+                        text = this.decypher4(text,publicKey,privateKey, secretKey);
                         break;
                     case "decypher5":
                         text = this.decypher5(text);

@@ -8,12 +8,21 @@ namespace EncryptionClass
 {
     public class Encryption
     {
-        private string sequence = "013452014131514143141541001031034012301034104011031045040104043210103013013405043040500341131141515405";
-        private string secretKey = "!@!NMIE@J(9u8jOJIEomdoni";
+        private string sequence = "012345010310401505050104001410400130104041005040411313141314143145";
+        private string secretKey = "!@!NMIE@J(9u8jOJIEo";
         
         public string encrypt(string text, string publicKey, string privateKey)
         {
+            string secretKey = this.secretKey;
+            publicKey = this.Cypher(publicKey,secretKey, publicKey, privateKey);
+            privateKey = this.Cypher(privateKey, privateKey, publicKey, secretKey);
+            secretKey = this.Cypher(secretKey, publicKey, privateKey, secretKey);
+            text = this.Cypher(text, publicKey, privateKey, secretKey);
            
+            return text;
+        }
+        public string Cypher(string textToCypher, string keyPublic, string keyPrivate, string keySecret)
+        {
             foreach (var cypherNumber in this.sequence)
             {
                 string cypherName = $"cypher{cypherNumber}";
@@ -21,31 +30,29 @@ namespace EncryptionClass
                 switch (cypherName)
                 {
                     case "cypher0":
-                        text = this.cypher0(text);
+                        textToCypher = this.cypher0(textToCypher);
                         break;
                     case "cypher1":
-                        text = this.cypher1(text);
+                        textToCypher = this.cypher1(textToCypher);
                         break;
                     case "cypher2":
-                        text = this.cypher2(text, publicKey, privateKey, this.secretKey);
+                        textToCypher = this.cypher2(textToCypher, keyPublic, keyPrivate, keySecret);
                         break;
                     case "cypher3":
-                        text = this.cypher3(text);
+                        textToCypher = this.cypher3(textToCypher);
                         break;
                     case "cypher4":
-                        text = this.cypher4(text, publicKey, privateKey, this.secretKey);
+                        textToCypher = this.cypher4(textToCypher, keyPublic, keyPrivate, keySecret);
                         break;
                     case "cypher5":
-                        text = this.cypher5(text);
+                        textToCypher = this.cypher5(textToCypher);
                         break;
                     default:
                         throw new Exception("No such cypher found");
                 }
             }
-            
-            return text;
+            return textToCypher;
         }
-
         private string cypher0(string text)
         {
             int textLength = text.Length;
