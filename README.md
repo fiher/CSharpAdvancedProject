@@ -17,3 +17,15 @@
 <h5> Кристиян Памидов (github: https://github.com/ChrisPam ) <h5>
 <h4>Contribution:</h4><h5>Made one of the cyphers and decyphers.</h4>
 </div>
+</br>
+<div>
+<h2>How to run it?<h2>
+</div>
+<div>
+<h4>After download you want to go to **EncryptionAlgorithm->Program.cs** and hit **CTRL + F5** . If you want to change the way the algorithm works you need to go to **EncryptionAlgorithm->Encryption.cs**. There you will find private variable "sequence" containing numbers from 0 to 5 represented as a long string. You can change it anyway you want as long as you follow these rules:
+<ul>
+<li>It must contain only numbers from 0 to 5 and nothing else!</li>
+<li>Don't use the number 2 more than twice as it is used to insert things into the text and make it bigger</li>
+<li>Don't forget to copy it at the end and go to EncryptionAlgorithm->Decryption.cs to paste it there as the two sequences must be identical</li></ul>
+If those rules are followed the code must run correctly. <h3>Bear in mind that you can change the <i>secretKey</i> variable as well, but also you have to remember to paste it in the Decryption class, as both classes must have identical private variables to run correctly!<h3><h5>
+</div>
